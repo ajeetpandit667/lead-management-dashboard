@@ -16,7 +16,7 @@ router.use(auth);
 router.get('/', getLeads);
 router.post('/', createLead);
 
-// Analytics route must come before :id route
+// Analytics route must come before :id route (to prevent /:id from matching /analytics)
 router.get('/analytics', getAnalytics);
 
 router.get('/:id', getLeadById);

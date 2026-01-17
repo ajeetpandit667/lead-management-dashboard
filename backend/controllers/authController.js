@@ -5,6 +5,11 @@ const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
+    // Validate input
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: 'Please provide username, email, and password' });
+    }
+
     // Normalize username and email to lowercase for consistency
     const normalizedUsername = username.toLowerCase();
     const normalizedEmail = email.toLowerCase();

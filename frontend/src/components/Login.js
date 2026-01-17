@@ -12,9 +12,11 @@ export default function Login({ onLogin }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Fill demo credentials on mount
+    // Fill demo credentials on mount for login, clear for register
     if (!isRegister) {
       setFormData({ username: 'demo', email: '', password: 'demo123' });
+    } else {
+      setFormData({ username: '', email: '', password: '' });
     }
   }, [isRegister]);
 

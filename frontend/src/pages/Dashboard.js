@@ -21,7 +21,7 @@ export default function Dashboard({ user, onLogout }) {
   const [status, setStatus] = useState('');
   const [source, setSource] = useState('');
   const [page, setPage] = useState(1);
-  const [limit] = useState(10);
+  const [limit] = useState(50);
 
   // Fetch leads and analytics
   const fetchData = async () => {
@@ -54,7 +54,7 @@ export default function Dashboard({ user, onLogout }) {
   // Fetch data on component mount and when filters change
   useEffect(() => {
     fetchData();
-  }, [search, stage, status, source, page, limit, fetchData]);
+  }, [search, stage, status, source, page, limit]);
 
   const handleViewLead = (lead) => {
     setSelectedLead(lead);

@@ -84,9 +84,9 @@ const seedDatabase = async () => {
     await demoUser.save();
     console.log('Created demo user (username: demo, password: demo123)');
 
-    // Generate and insert 500 dummy leads
+    // Generate and insert 1000 dummy leads
     const leads = [];
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1000; i++) {
       leads.push(generateRandomLead());
     }
 
