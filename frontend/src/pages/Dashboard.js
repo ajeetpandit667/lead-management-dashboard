@@ -54,7 +54,7 @@ export default function Dashboard({ user, onLogout }) {
   // Fetch data on component mount and when filters change
   useEffect(() => {
     fetchData();
-  }, [search, stage, status, source, page, limit]);
+  }, [search, stage, status, source, page, limit, fetchData]);
 
   const handleViewLead = (lead) => {
     setSelectedLead(lead);
