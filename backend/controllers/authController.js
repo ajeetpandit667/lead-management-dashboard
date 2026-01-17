@@ -5,16 +5,25 @@ const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if user already exists
-    let user = await User.findOne({ $or: [{ email }, { username }] });
+    // Normalize username and email to lowercase for consistency
+    const normalizedUsername = username.toLowerCase();
+    const normalizedEmail = email.toLowerCase();
+
+    // Check if user already exists (case-insensitive)
+    let user = await User.findOne({ 
+      $or: [
+        { email: normalizedEmail }, 
+        { username: normalizedUsername }
+      ] 
+    });
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
     // Create new user
     user = new User({
-      username,
-      email,
+      username: normalizedUsername,
+      email: normalizedEmail,
       password,
     });
 
@@ -46,8 +55,8 @@ const login = async (req, res) => {
       return res.status(400).json({ message: 'Please provide username and password' });
     }
 
-    // Check for user
-    const user = await User.findOne({ username });
+    // Check for user (case-insensitive search)
+    const user = await User.findOne({ username: username.toLowerCase() });
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
